@@ -3,8 +3,8 @@ import apiClient from "../services/api-client";
 import config from "../config.json";
 import http from "../services/http-service";
 
-const useGenres = () => {
-  const [genres, setGenres] = useState([]);
+const useData = (endpoint) => {
+  const [data, setData] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -12,16 +12,14 @@ const useGenres = () => {
     const controller = new AbortController();
 
     setLoading(true);
-
     apiClient
-      .get(config.apiUrl + "/genres", { signal: controller.signal })
+      .get(`${config.apiUrl}${endpoint}`, { signal: controller.signal })
       .then(({ data }) => {
         setLoading(false);
-        setGenres(data.results);
+        setData(data.results);
       })
       .catch((err) => {
         setLoading(false);
-
         if (err instanceof http.CanceledError) return;
         setError(err.message);
       })
@@ -30,7 +28,7 @@ const useGenres = () => {
     return () => controller.abort();
   }, []);
 
-  return { genres, error, isLoading };
+  return { data, error, isLoading };
 };
 
-export default useGenres;
+export default useData;
