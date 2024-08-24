@@ -6,7 +6,7 @@ import http from "../services/http-service";
 const useData = (endpoint) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
