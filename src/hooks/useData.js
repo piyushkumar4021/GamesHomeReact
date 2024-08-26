@@ -3,17 +3,23 @@ import apiClient from "../services/api-client";
 import config from "../config.json";
 import http from "../services/http-service";
 
-const useData = (endpoint) => {
+const useData = (endpoint, genre = null) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
+    const AxiosRequstConfig = {
+      signal: controller.signal,
+      params: {
+        genres: genre,
+      },
+    };
 
     setLoading(true);
     apiClient
-      .get(`${config.apiUrl}${endpoint}`, { signal: controller.signal })
+      .get(`${config.apiUrl}${endpoint}`, AxiosRequstConfig)
       .then(({ data }) => {
         setLoading(false);
         setData(data.results);
@@ -22,11 +28,10 @@ const useData = (endpoint) => {
         setLoading(false);
         if (err instanceof http.CanceledError) return;
         setError(err.message);
-      })
-      .finally(() => setLoading(false));
+      });
 
     return () => controller.abort();
-  }, []);
+  }, [genre, endpoint]);
 
   return { data, error, isLoading };
 };
