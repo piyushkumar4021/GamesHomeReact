@@ -17,6 +17,7 @@ const useData = (endpoint, genre = null) => {
       },
     };
 
+    setData([]);
     setLoading(true);
     apiClient
       .get(`${config.apiUrl}${endpoint}`, AxiosRequstConfig)
