@@ -3,24 +3,25 @@ import apiClient from "../services/api-client";
 import config from "../config.json";
 import http from "../services/http-service";
 
-const useData = (endpoint, genre = null) => {
+const useData = (endpoint, genre, platform) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
-    const AxiosRequstConfig = {
+    const AxiosRequestConfig = {
       signal: controller.signal,
       params: {
         genres: genre,
+        parent_platforms: platform,
       },
     };
 
     setData([]);
     setLoading(true);
     apiClient
-      .get(`${config.apiUrl}${endpoint}`, AxiosRequstConfig)
+      .get(`${config.apiUrl}${endpoint}`, AxiosRequestConfig)
       .then(({ data }) => {
         setLoading(false);
         setData(data.results);
@@ -32,7 +33,7 @@ const useData = (endpoint, genre = null) => {
       });
 
     return () => controller.abort();
-  }, [genre, endpoint]);
+  }, [genre, platform]);
 
   return { data, error, isLoading };
 };

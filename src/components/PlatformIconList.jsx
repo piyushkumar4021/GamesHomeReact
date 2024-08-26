@@ -23,7 +23,7 @@ function PlatformIconList({ platforms }) {
   };
 
   return (
-    <HStack marginY={1}>
+    <HStack marginY={1} wrap={"wrap"}>
       {platforms.map((platform) => (
         <Icon
           key={platform.slug}

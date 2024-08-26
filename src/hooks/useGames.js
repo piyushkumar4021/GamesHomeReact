@@ -1,5 +1,5 @@
 import useData from "./useData";
 
-const useGames = (genre) => useData("/games", genre);
+const useGames = (genre, platform) => useData("/games", genre, platform);
 
 export default useGames;
