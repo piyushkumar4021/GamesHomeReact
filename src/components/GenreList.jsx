@@ -8,9 +8,8 @@ import {
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import getCroppedImages from "../services/get-cropped-images";
-import _ from "lodash";
 
-const GenreList = ({ handleGenreSelect }) => {
+const GenreList = ({ selectedGenre, handleGenreSelect }) => {
   const { data: genres, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -26,7 +25,13 @@ const GenreList = ({ handleGenreSelect }) => {
               borderRadius="10px"
               boxSize={9}
             />
-            <Button variant="link" onClick={() => handleGenreSelect(genre.id)}>
+            <Button
+              fontWeight={selectedGenre === genre.id ? "bold" : "normal"}
+              color={selectedGenre === genre.id && "blue.500"}
+              variant="link"
+              onClick={() => handleGenreSelect(genre.id)}
+              letterSpacing={1}
+            >
               {genre.name}
             </Button>
           </HStack>
