@@ -3,7 +3,7 @@ import apiClient from "../services/api-client";
 import config from "../config.json";
 import http from "../services/http-service";
 
-const useData = (endpoint, genre, platform) => {
+const useData = (endpoint, genre, platform, order) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
@@ -15,6 +15,7 @@ const useData = (endpoint, genre, platform) => {
       params: {
         genres: genre,
         parent_platforms: platform,
+        ordering: order,
       },
     };
 
@@ -33,7 +34,7 @@ const useData = (endpoint, genre, platform) => {
       });
 
     return () => controller.abort();
-  }, [genre, platform]);
+  }, [endpoint, genre, platform, order]);
 
   return { data, error, isLoading };
 };

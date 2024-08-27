@@ -4,12 +4,12 @@ import useGames from "../hooks/useGames";
 import GameCardSkeleton from "./GameCardSkeleton";
 import _ from "lodash";
 
-function GameGrid({ selectedGenre, selectedPlatform }) {
+function GameGrid({ selectedGenre, selectedPlatform, selectedOrder }) {
   const {
     data: games,
     error,
     isLoading,
-  } = useGames(selectedGenre, selectedPlatform);
+  } = useGames(selectedGenre, selectedPlatform, selectedOrder);
   const skeletonCount = 9;
 
   return (
