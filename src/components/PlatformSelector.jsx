@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import usePlatform from "../hooks/usePlatform";
 import { FaChevronDown } from "react-icons/fa";
 
-const PlatformList = ({ selectedPlatform, handlePlatformSelect }) => {
+const PlatformSelector = ({ selectedPlatform, handlePlatformSelect }) => {
   const { data: Platforms, error } = usePlatform();
 
   if (error) return null;
@@ -26,4 +26,4 @@ const PlatformList = ({ selectedPlatform, handlePlatformSelect }) => {
   );
 };
 
-export default PlatformList;
+export default PlatformSelector;
