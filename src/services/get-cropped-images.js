@@ -1,5 +1,7 @@
+import image from "../assets/default.jpg";
+
 const getCroppedImages = (url) => {
-  if (!url) return null;
+  if (!url) return image;
 
   const target = "media/";
   const index = url.indexOf(target) + target.length;
