@@ -7,9 +7,11 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState(null);
-  const [selectedPlatform, setSelectedPlatform] = useState(null);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [gameQuery, setGameQuery] = useState({
+    genre: null,
+    platform: null,
+    order: null,
+  });
 
   return (
     <Grid
@@ -21,6 +23,8 @@ function App() {
         base: "1fr",
         lg: "250px 1fr",
       }}
+      maxWidth="1400px"
+      margin={"auto"}
     >
       <GridItem area={"nav"}>
         <Navbar />
@@ -28,27 +32,25 @@ function App() {
       <Show above="lg">
         <GridItem area={"aside"}>
           <GenreList
-            selectedGenre={selectedGenre}
-            handleGenreSelect={setSelectedGenre}
+            genre={gameQuery.genre}
+            handleGenreChange={(genre) => setGameQuery({ ...gameQuery, genre })}
           />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
         <HStack paddingLeft={7}>
           <PlatformSelector
-            selectedPlatform={selectedPlatform}
-            handlePlatformSelect={setSelectedPlatform}
+            platform={gameQuery.platform}
+            handlePlatformChange={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
           />
           <SortSelector
-            selectedOrder={selectedOrder}
-            setSelectedOrder={setSelectedOrder}
+            order={gameQuery.order}
+            handleOrderChange={(order) => setGameQuery({ ...gameQuery, order })}
           />
         </HStack>
-        <GameGrid
-          selectedPlatform={selectedPlatform?.id}
-          selectedGenre={selectedGenre}
-          selectedOrder={selectedOrder}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

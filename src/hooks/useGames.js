@@ -1,6 +1,5 @@
 import useData from "./useData";
 
-const useGames = (genre, platform, order) =>
-  useData("/games", genre, platform, order?.value);
+const useGames = (gameQuery) => useData("/games", gameQuery);
 
 export default useGames;

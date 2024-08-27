@@ -8,7 +8,9 @@ function GameCard({ game }) {
     <Card borderRadius={10} overflow="hidden">
       <Image src={getCroppedImages(game.background_image)}></Image>
       <CardBody>
-        <Heading fontSize="2xl">{game.name}</Heading>
+        <Heading letterSpacing={1} fontSize="2xl">
+          {game.name}
+        </Heading>
         <HStack justifyContent="space-between">
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}

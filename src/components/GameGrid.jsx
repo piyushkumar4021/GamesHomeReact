@@ -4,18 +4,15 @@ import useGames from "../hooks/useGames";
 import GameCardSkeleton from "./GameCardSkeleton";
 import _ from "lodash";
 
-function GameGrid({ selectedGenre, selectedPlatform, selectedOrder }) {
-  const {
-    data: games,
-    error,
-    isLoading,
-  } = useGames(selectedGenre, selectedPlatform, selectedOrder);
+function GameGrid({ gameQuery }) {
+  const { data: games, error, isLoading } = useGames(gameQuery);
   const skeletonCount = 9;
 
   return (
     <>
       {error && <Text>{error}</Text>}
       <SimpleGrid
+        alignItems="start"
         columns={{ sm: 1, md: 2, lg: 3 }}
         spacing={{ base: 4, xl: 6 }}
         padding={7}

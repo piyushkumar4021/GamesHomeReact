@@ -2,23 +2,20 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import usePlatform from "../hooks/usePlatform";
 import { FaChevronDown } from "react-icons/fa";
 
-const PlatformSelector = ({ selectedPlatform, handlePlatformSelect }) => {
-  const { data: Platforms, error } = usePlatform();
+const PlatformSelector = ({ platform, handlePlatformChange }) => {
+  const { data: platforms, error } = usePlatform();
 
   if (error) return null;
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaChevronDown />}>
-        {selectedPlatform?.name || "Platforms"}
+        {platform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
-        {Platforms.map((platform) => (
-          <MenuItem
-            onClick={() => handlePlatformSelect(platform)}
-            key={platform.id}
-          >
-            {platform.name}
+        {platforms.map((p) => (
+          <MenuItem onClick={() => handlePlatformChange(p)} key={p.id}>
+            {p.name}
           </MenuItem>
         ))}
       </MenuList>
