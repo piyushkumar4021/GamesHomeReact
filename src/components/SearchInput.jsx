@@ -1,9 +1,31 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { useRef } from "react";
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Button,
+} from "@chakra-ui/react";
+import { useEffect, useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
 const SearchInput = ({ handleSearch }) => {
   const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "/") {
+        e.preventDefault();
+        searchRef.current.focus();
+      } else if (e.key === "Escape") {
+        searchRef.current.blur();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <form
       style={{ width: "100%" }}
@@ -22,6 +44,11 @@ const SearchInput = ({ handleSearch }) => {
           variant="filled"
           ref={searchRef}
         />
+        <InputRightElement pointerEvents="none" marginRight={3}>
+          <Button variant="outline" size="xs" color="gray.500">
+            /
+          </Button>
+        </InputRightElement>
       </InputGroup>
     </form>
   );
