@@ -15,7 +15,6 @@ function GameGrid({ gameQuery }) {
         alignItems="start"
         columns={{ sm: 1, md: 2, lg: 3 }}
         spacing={{ base: 4, xl: 6 }}
-        padding={7}
       >
         {isLoading &&
           _.range(skeletonCount).map((skeleton) => (
