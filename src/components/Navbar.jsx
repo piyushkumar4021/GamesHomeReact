@@ -1,17 +1,25 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image, Text, Show } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import logo from "../assets/logo.webp";
 import styles from "../font.module.css";
+import SearchInput from "./SearchInput";
 
 function Navbar() {
   return (
-    <HStack justifyContent={"space-between"} px={"10px"}>
-      <HStack>
-        <Image src={logo} boxSize={"75px"} />
-        <Text className={styles.fontJersey} fontSize="3xl">
+    <HStack
+      gap={{
+        base: 3,
+        md: 6,
+      }}
+      px={"10px"}
+    >
+      <Image src={logo} boxSize={"75px"} />
+      <Show above="md">
+        <Text marginLeft={-4} className={styles.fontJersey} fontSize="3xl">
           GamesHome
         </Text>
-      </HStack>
+      </Show>
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   );
