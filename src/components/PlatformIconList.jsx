@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { BsNintendoSwitch } from "react-icons/bs";
+import { SiSega } from "react-icons/si";
 
 function PlatformIconList({ platforms }) {
   const iconMap = {
@@ -20,6 +21,7 @@ function PlatformIconList({ platforms }) {
     mac: FaApple,
     linux: FaLinux,
     nintendo: BsNintendoSwitch,
+    sega: SiSega,
   };
 
   if (!platforms) return null;

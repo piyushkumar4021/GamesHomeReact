@@ -5,6 +5,7 @@ import {
   MenuGroup,
   MenuItem,
   Button,
+  Icon,
 } from "@chakra-ui/react";
 import usePlatform from "../hooks/usePlatform";
 import { FaChevronDown } from "react-icons/fa";
@@ -13,6 +14,8 @@ const PlatformSelector = ({ platform, handlePlatformChange }) => {
   const { data: platforms, error } = usePlatform();
 
   if (error) return null;
+
+  console.log(platforms);
 
   return (
     <Menu>
@@ -33,7 +36,11 @@ const PlatformSelector = ({ platform, handlePlatformChange }) => {
             </Button>
           )}
           {platforms.map((p) => (
-            <MenuItem onClick={() => handlePlatformChange(p)} key={p.id}>
+            <MenuItem
+              key={p.id}
+              icon={<Icon as={p.icon} boxSize={4} />}
+              onClick={() => handlePlatformChange(p)}
+            >
               {p.name}
             </MenuItem>
           ))}

@@ -1,5 +1,7 @@
-import useData from "./useData";
+import genres from "../data/genres";
 
-const usePlatform = () => useData("/platforms/lists/parents");
+const usePlatform = () => {
+  return { data: genres, isLoading: false, error: null };
+};
 
 export default usePlatform;
