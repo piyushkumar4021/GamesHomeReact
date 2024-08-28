@@ -16,6 +16,7 @@ const useData = (endpoint, gameQuery) => {
         genres: gameQuery?.genre?.id,
         parent_platforms: gameQuery?.platform?.id,
         ordering: gameQuery?.order?.value,
+        search: gameQuery?.search,
       },
     };
 

@@ -4,7 +4,7 @@ import logo from "../assets/logo.webp";
 import styles from "../font.module.css";
 import SearchInput from "./SearchInput";
 
-function Navbar() {
+function Navbar({ handleSearch }) {
   return (
     <HStack
       gap={{
@@ -19,7 +19,7 @@ function Navbar() {
           GamesHome
         </Text>
       </Show>
-      <SearchInput />
+      <SearchInput handleSearch={handleSearch} />
       <ColorModeSwitch />
     </HStack>
   );

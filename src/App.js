@@ -11,6 +11,7 @@ function App() {
     genre: null,
     platform: null,
     order: null,
+    search: null,
   });
 
   return (
@@ -27,7 +28,9 @@ function App() {
       margin={"auto"}
     >
       <GridItem area={"nav"}>
-        <Navbar />
+        <Navbar
+          handleSearch={(search) => setGameQuery({ ...gameQuery, search })}
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"}>
