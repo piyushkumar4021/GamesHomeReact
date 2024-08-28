@@ -22,6 +22,8 @@ function PlatformIconList({ platforms }) {
     nintendo: BsNintendoSwitch,
   };
 
+  if (!platforms) return null;
+
   return (
     <HStack marginY={1} wrap={"wrap"}>
       {platforms.map((platform) => (
