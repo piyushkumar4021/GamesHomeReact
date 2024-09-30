@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import config from "../config.json";
-import http from "../services/http-service";
+import { useEffect, useState } from 'react';
+import apiClient from '../services/api-client';
+import config from '../config.json';
+import http from '../services/http-service';
 
 const useData = (endpoint, gameQuery) => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const useData = (endpoint, gameQuery) => {
       });
 
     return () => controller.abort();
-  }, [gameQuery]);
+  }, [endpoint, gameQuery]);
 
   return { data, error, isLoading };
 };
